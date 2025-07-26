@@ -1,0 +1,268 @@
+/* === Основные переменные === */
+:root {
+  --pink: #ff80ff;
+  --purple: #8000ff;
+  --white: #ffffff;
+  --dark: #1a1a1a;
+  --light-bg: #f9f9ff;
+  --text: #333;
+  --radius: 16px;
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  --transition: 0.3s ease;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === Сброс стилей === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Фон звёзд === */
+#stars {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* === Глобальное тело === */
+body {
+  font-family: var(--font-main);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+
+  background: linear-gradient(-45deg, var(--pink), var(--purple), #aa33ff, #ff88dd, var(--pink));
+  background-size: 400% 400%;
+  animation: gradientAnimation 12s ease infinite;
+}
+
+/* === Анимация градиента === */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === Звезды падают === */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: starAnimation linear infinite;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes starAnimation {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+/* === Прозрачная маска поверх фона === */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  z-index: -1;
+}
+
+/* === Шапка === */
+.hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-name {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--purple);
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  animation: starAnimation linear infinite;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  box-shadow: 0 0 8px white; /* эффект светлячка */
+}
+
+/* === Кнопки CTA === */
+.cta-buttons {
+  margin-top: 2rem;
+}
+
+.cta-buttons button {
+  background: linear-gradient(to right, var(--pink), var(--purple));
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  margin: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.cta-buttons button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.login-link {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.login-link a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* === Секции информации === */
+.info,
+.features {
+  max-width: 900px;
+  margin: 0 auto 4rem auto;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.info h2,
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--purple);
+}
+
+.info p {
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+/* === Сетка фич === */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 3rem 1rem;
+  border-radius: var(--radius);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* === Карточки фич === */
+.feature-item {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 2rem 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  animation: fadeInUp 0.5s ease-in-out both;
+}
+
+.feature-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  border: 2px solid var(--purple);
+}
+
+.feature-item .icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--purple);
+}
+
+.feature-item h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+  font-size: 1.05rem;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+/* === Анимация появления фич === */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Нижний призыв к действию === */
+.final-cta {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(170, 51, 255, 0.15);
+  max-width: 900px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  margin: 0 auto 6rem auto;
+}
+
+.final-cta button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  background: linear-gradient(to right, var(--pink), var(--purple));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.final-cta button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}

@@ -1,0 +1,42 @@
+2025-06-14 11:24:36 +05 СООБЩЕНИЕ:  запускается PostgreSQL 17.5 on x86_64-windows, compiled by msvc-19.43.34808, 64-bit
+2025-06-14 11:24:36 +05 СООБЩЕНИЕ:  для приёма подключений по адресу IPv6 "::" открыт порт 5432
+2025-06-14 11:24:36 +05 СООБЩЕНИЕ:  для приёма подключений по адресу IPv4 "0.0.0.0" открыт порт 5432
+2025-06-14 11:24:37 +05 СООБЩЕНИЕ:  работа системы БД была прервана; последний момент работы: 2025-06-14 10:51:05 +05
+2025-06-14 11:24:38 +05 СООБЩЕНИЕ:  система БД была остановлена нештатно; производится автоматическое восстановление
+2025-06-14 11:24:38 +05 СООБЩЕНИЕ:  запись REDO начинается со смещения 0/1A5D310
+2025-06-14 11:24:38 +05 СООБЩЕНИЕ:  неверная длина записи в позиции 0/1A5D348: ожидалось минимум 24, получено 0
+2025-06-14 11:24:38 +05 СООБЩЕНИЕ:  записи REDO обработаны до смещения 0/1A5D310, нагрузка системы: CPU: пользов.: 0.00 с, система: 0.00 с, прошло: 0.00 с
+2025-06-14 11:24:38 +05 СООБЩЕНИЕ:  начата контрольная точка: end-of-recovery immediate wait
+2025-06-14 11:24:38 +05 СООБЩЕНИЕ:  контрольная точка завершена: записано буферов: 3 (0.0%); добавлено файлов WAL 0, удалено: 0, переработано: 0; запись=0.003 сек., синхр.=0.003 сек., всего=0.015 сек.; синхронизировано_файлов=2, самая_долгая_синхр.=0.002 сек., средняя=0.002 сек.; расстояние=0 kB, ожидалось=0 kB; lsn=0/1A5D348, lsn redo=0/1A5D348
+2025-06-14 11:24:38 +05 СООБЩЕНИЕ:  система БД готова принимать подключения
+2025-06-14 11:26:50 +05 РћРЁРР‘РљРђ:  РЅРµРІРµСЂРЅР°СЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ Р±Р°Р№С‚ РґР»СЏ РєРѕРґРёСЂРѕРІРєРё "UTF8": 0xd1 0xce
+2025-06-14 11:26:50 +05 РћРџР•Р РђРўРћР :  /*pga4dash*/
+	SELECT pg_read_file(pg_current_logfile(), 0, 1428);
+	
+2025-06-14 11:26:54 +05 РћРЁРР‘РљРђ:  РЅРµРІРµСЂРЅР°СЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ Р±Р°Р№С‚ РґР»СЏ РєРѕРґРёСЂРѕРІРєРё "UTF8": 0xd1 0xce
+2025-06-14 11:26:54 +05 РћРџР•Р РђРўРћР :  /*pga4dash*/
+	SELECT pg_read_file(pg_current_logfile(), 0, 1689);
+	
+2025-06-14 11:27:34 +05 СООБЩЕНИЕ:  процесс сервера (PID 10044) был прерван исключением 0xC000013A
+2025-06-14 11:27:34 +05 ПОДРОБНОСТИ:  Завершившийся процесс выполнял действие: /*pga4dash*/
+	SELECT 'session_stats' AS chart_name, pg_catalog.row_to_json(t) AS chart_data
+	FROM (SELECT
+	   (SELECT count(*) FROM pg_catalog.pg_stat_activity) AS "Total",
+	   (SELECT count(*) FROM pg_catalog.pg_stat_activity WHERE state = 'active')  AS "Active",
+	   (SELECT count(*) FROM pg_catalog.pg_stat_activity WHERE state = 'idle')  AS "Idle"
+	) t
+	UNION ALL
+	SELECT 'tps_stats' AS chart_name, pg_catalog.row_to_json(t) AS chart_data
+	FROM (SELECT
+	   (SELECT sum(xact_commit) + sum(xact_rollback) FROM pg_catalog.pg_stat_database) AS "Transactions",
+	   (SELECT sum(xact_commit) FROM pg_catalog.pg_stat_database) AS "Commits",
+	   (SELECT sum(xact_rollback) FROM pg_catalog.pg_stat_database) AS "Rollbacks"
+	) t
+	UNION ALL
+	SELECT 'ti_stats' AS chart_name, pg_catalog.row_to_json(t) AS chart_data
+	FROM (SELECT
+	   (SELECT sum(tup_inserted) FROM pg_catalog.pg_stat_database) AS "Inserts",
+	   (SELECT sum(tup_updated) FROM pg_catalog.pg_stat_database) AS "Updates",
+	   (SELECT sum(tup_deleted) FROM pg_catalog.pg_stat_database) AS 
+2025-06-14 11:27:34 +05 ПОДСКАЗКА:  Описание этого шестнадцатеричного значения ищите во включаемом C-файле "ntstatus.h"
+2025-06-14 11:27:34 +05 СООБЩЕНИЕ:  завершение всех остальных активных серверных процессов
