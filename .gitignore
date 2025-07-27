@@ -3,3 +3,4 @@ pgAdmin 4/
 sql/
 *.log
 package-lock.json
+package.json
