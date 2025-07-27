@@ -1,0 +1,5 @@
+node_modules/
+pgAdmin 4/
+sql/
+*.log
+package-lock.json
